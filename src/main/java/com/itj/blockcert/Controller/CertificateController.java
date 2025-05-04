@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itj.blockcert.Model.CertificateModel;
+import com.itj.blockcert.Model.Certificate;
 import com.itj.blockcert.Service.CertificateService;
 
 @RestController
@@ -18,25 +18,25 @@ import com.itj.blockcert.Service.CertificateService;
 public class CertificateController {
 	
 	@Autowired
-    private CertificateService service;
+    private CertificateService certificateService;
 	
 	@PostMapping("/upload")
 	// upload Certificate
 	public ResponseEntity<String> uploadCertificate(@RequestParam MultipartFile file, @RequestParam String studentId) {
-		String certificateCIDString = service.uploadCertificate(file, studentId);
+		String certificateCIDString = certificateService.uploadCertificate(file, studentId);
 		return ResponseEntity.ok(certificateCIDString);
 	}
 
 	@PostMapping("/verify")
 	// verify Certificate
 	public ResponseEntity<String> verifyCertificate(@RequestParam MultipartFile file, @RequestParam String studentId) {
-		boolean valid = service.verifyCertificate(file, studentId);
+		boolean valid = certificateService.verifyCertificate(file, studentId);
 		return ResponseEntity.ok(valid ? "Verified" : "Invalid");
 	}
 
 	@GetMapping("/view/{studentId}")
 	// view Certificate
-	public ResponseEntity<CertificateModel> viewCertificate(@PathVariable String studentId) {
-		return ResponseEntity.ok(service.viewCertificate(studentId));
+	public ResponseEntity<Certificate> viewCertificate(@PathVariable String studentId) {
+		return ResponseEntity.ok(certificateService.viewCertificate(studentId));
 	}
 }

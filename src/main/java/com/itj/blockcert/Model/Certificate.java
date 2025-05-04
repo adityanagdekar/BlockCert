@@ -2,13 +2,12 @@ package com.itj.blockcert.Model;
 
 import java.time.LocalDate;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
-public class CertificateModel {
+public class Certificate {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -18,6 +17,18 @@ public class CertificateModel {
 	private String cidHash;
 	private String fileName;
 	private LocalDate issueDate;
+
+	public Certificate() {
+		// Required by JPA
+	}
+
+	public Certificate(Long id, String studentId, String cidHash, String fileName, LocalDate issueDate) {
+		this.id = id;
+		this.studentId = studentId;
+		this.cidHash = cidHash;
+		this.fileName = fileName;
+		this.issueDate = issueDate;
+	}
 
 	public Long getId() {
 		return id;
