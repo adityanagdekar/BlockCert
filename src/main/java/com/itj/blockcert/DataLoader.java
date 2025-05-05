@@ -20,14 +20,14 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Role adminRole = new Role(null, "ADMIN");
-        Role studentRole = new Role(null, "STUDENT");
-
-        roleRepository.save(adminRole);
-        roleRepository.save(studentRole);
-
-        userRepository.save(new AppUser(null, "admin_1", "admin_123", adminRole));
-        userRepository.save(new AppUser(null, "student_1", "student_123", studentRole));
+//        Role adminRole = new Role(null, "ADMIN");
+//        Role studentRole = new Role(null, "STUDENT");
+//
+//        roleRepository.save(adminRole);
+//        roleRepository.save(studentRole);
+//
+//        userRepository.save(new AppUser(null, "admin_1", "admin_123", adminRole));
+//        userRepository.save(new AppUser(null, "student_1", "student_123", studentRole));
     }
 }
 
