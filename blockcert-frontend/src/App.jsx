@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,6 +8,7 @@ function App() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [studentId, setStudentId] = useState("");
   const [verificationResult, setVerificationResult] = useState("");
+  const formRef = useRef(null);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -33,10 +34,13 @@ function App() {
           },
         }
       );
-      setMessage(response.data);
+      setVerificationResult(response.data);
+      formRef.current.reset(); // ✅ resets file input too
+      setSelectedFile(null);
+      setStudentId("");
     } catch (error) {
       console.error(error);
-      setMessage("Upload failed");
+      setVerificationResult("Upload failed");
     }
   };
 
@@ -50,19 +54,21 @@ function App() {
 
         <div className="File-Container">
           <div className="Upload-File-Container">
-            <div className="Student-Container">
-              <p>Enter Student Id</p>
-              <input
-                type="text"
-                value={studentId}
-                onChange={(e) => setStudentId(e.target.value)}
-                required
-              />
-            </div>
-            <br />
-            <p>Select or drag & drop your file</p>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Upload & Verify</button>
+            <form ref={formRef} onSubmit={handleUpload}>
+              <div className="Student-Container">
+                <p>Enter Student Id</p>
+                <input
+                  type="text"
+                  value={studentId}
+                  onChange={(e) => setStudentId(e.target.value)}
+                  required
+                />
+              </div>
+              <br />
+              <p>Select or drag & drop your file</p>
+              <input type="file" onChange={handleFileChange} />
+              <button>Upload & Verify</button>
+            </form>
           </div>
 
           <div className="Verify-File-Container">
