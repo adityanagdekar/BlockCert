@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Blockchain-Based Academic Credential Verification System} \\[0.5em]
+\large CS9053 – Introduction to Java \\ Spring 2025}
+\author{
+    Mukesh Durga \\ \textt{md6256@nyu.edu} \and
+    Aditya Nagdekar \\ \textt{an4744@nyu.edu} \and
+    Tejaswini Ojha \\ \textt{to2226@nyu.edu}
+}
+
+
+\begin{document}
+\maketitle
+\hrule
+\vspace{1em}
+
+\section*{Abstract}
+Academic institutions worldwide struggle with issuing and verifying credentials in a secure, efficient, and scalable manner. Traditional systems are centralized, prone to forgery, and require third-party verification agencies. This project introduces a blockchain-based solution where academic certificates are issued, stored, and verified using decentralized technologies. Leveraging Ethereum smart contracts and IPFS, we ensure immutability, transparency, and global accessibility of credentials, implemented using Java-based technologies.
+
+\section*{Introduction}
+In the current digital age, verifying academic credentials remains a slow and manual process. Employers often depend on third-party agencies or direct communication with institutions to validate degrees and transcripts. This introduces inefficiencies, security risks, and high costs.
+
+Blockchain, as a decentralized ledger technology, offers a transformative solution. By recording certificate data as immutable transactions and storing certificate files on a distributed file system (IPFS), we can eliminate fraud and allow instant, trustless verification. Java serves as the primary development environment for our backend system, utilizing Spring Boot for REST APIs, Web3j for blockchain integration, and IPFS clients for distributed file storage. The project emphasizes secure multi-role interaction between universities, students, and employers in a trustless academic ecosystem.
+
+\newpage
+
+\section*{System Architecture}
+Below is the architecture of our proposed system:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{java-blockchain.png}
+    \caption{Blockchain-based Academic Credential Verification System}
+    \label{fig:system_arch}
+\end{figure}
+
+\section*{Key Features}
+\begin{itemize}
+  \item Admin uploads certificate PDF, which is hashed and uploaded to IPFS.
+  \item The returned CID is recorded on the blockchain using Web3j and a smart contract.
+  \item Employers can upload certificates for verification. Hashes are compared with CID on-chain.
+  \item Role-based access: Admin (issue), Student (view), Employer (verify).
+  \item Optional: Maintain logs and analytics via a local database.
+\end{itemize}
+
+\section*{Technologies Used}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Layer} & \textbf{Tools} \\
+\hline
+Backend & Java Spring Boot, Web3j \\
+Blockchain & Ganache / Polygon Mumbai \\
+Smart Contract & Solidity (Remix/Hardhat) \\
+Storage & IPFS (Pinata/web3.storage) \\
+Frontend & React.js / Postman / JavaFX \\
+Database & PostgreSQL / H2 (Optional) \\
+Wallet & Metamask \\
+Build Tools & Maven / Gradle \\
+\hline
+\end{tabular}
+
+\section*{Advanced Java Concepts}
+\begin{itemize}
+  \item \textbf{Multithreading}: Handle multiple uploads/verifications.
+  \item \textbf{Networking}: RESTful APIs and blockchain interaction.
+  \item \textbf{Custom Data Structures}: Manage certificate and user metadata.
+  \item \textbf{File Handling}: SHA-256 hashing, uploads, IPFS interactions.
+  \item \textbf{Spring Security}: Role-based session management.
+  \item \textbf{Library Integration}: Web3j and IPFS libraries.
+\end{itemize}
+
+\section*{Team Roles}
+\begin{itemize}
+  \item \textbf{Mukesh Durga}: Develops backend REST APIs, integrates third-party services, and manages file handling routines.
+  \item \textbf{Aditya Nagdekar}: Bridges frontend and backend systems—implements API endpoints and integrates React components with Spring Boot services.
+  \item \textbf{Tejaswini Ojha}: Designs and deploys smart contracts, orchestrates Web3j integration, and administers IPFS storage workflows.
+\end{itemize}
+
+\section*{Outcome \& Benefits}
+\begin{itemize}
+  \item Fast, tamper-proof academic credential verification.
+  \item Eliminates the need for third-party verifiers.
+  \item Self-sovereign identity for students.
+  \item Real-world blockchain use case using Java.
+\end{itemize}
+
+\section*{Future Scope}
+\begin{itemize}
+  \item Add QR code verification support.
+  \item Implement certificate expiration and renewal.
+  \item Analytics dashboard for admin users.
+\end{itemize}
+
+\section*{References}
+\begin{itemize}
+  \item \href{https://remix.ethereum.org}{Solidity on Remix IDE}
+  \item \href{https://docs.web3j.io/}{Web3j Documentation}
+  \item \href{https://docs.ipfs.tech/}{IPFS Docs}
+  \item \href{https://trufflesuite.com/ganache/}{Ganache by Truffle Suite}
+\end{itemize}
+
+\end{document}
