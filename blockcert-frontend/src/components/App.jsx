@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import "../style/App.css";
 import axios from "axios";
+import Header from "./Header";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -45,10 +44,8 @@ function App() {
   };
 
   return (
-    <div className="Main-Container">
-      <div className="Header">
-        <h1>🎓 BlockCert: Academic Credential Verification</h1>
-      </div>
+    <div className="Main-Container ">
+      <Header />
       <div className="Content-Container">
         <h2>Upload your certificate to verify authenticity</h2>
 

@@ -1,0 +1,78 @@
+/* * {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+} */
+
+.Main-Container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.Login-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Login-Form-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  background-color: #fdfdfd;
+  padding: 5%;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.Login-Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Login-Form h2 {
+  margin-bottom: 15%;
+  text-align: center;
+}
+
+.Login-Form label {
+  margin-top: 5%;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.Login-Form input {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.Login-Form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.Login-Form button:hover {
+  background-color: #43a047;
+}
+
+.Login-Message {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #d32f2f;
+}

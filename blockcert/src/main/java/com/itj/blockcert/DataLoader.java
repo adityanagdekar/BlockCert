@@ -6,6 +6,7 @@ import com.itj.blockcert.Repository.RoleRepository;
 import com.itj.blockcert.Repository.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,9 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -26,8 +30,10 @@ public class DataLoader implements CommandLineRunner {
 //        roleRepository.save(adminRole);
 //        roleRepository.save(studentRole);
 //
-//        userRepository.save(new AppUser(null, "admin_1", "admin_123", adminRole));
-//        userRepository.save(new AppUser(null, "student_1", "student_123", studentRole));
+//        userRepository.save(new AppUser(null, "admin_12", 
+//        		passwordEncoder.encode("admin_1234"), adminRole));
+//        userRepository.save(new AppUser(null, "student_12", 
+//        		passwordEncoder.encode("student_1234"), studentRole));
     }
 }
 
