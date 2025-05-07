@@ -27,6 +27,14 @@
   align-items: center;
 } */
 
+.File-Header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .File-Container {
   width: 100%;
   margin-top: 20px;

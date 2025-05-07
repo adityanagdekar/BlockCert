@@ -1,12 +1,19 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/AdminDashBoard.css";
 import axios from "axios";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import ContentContainer from "./ContentContainer";
 import Button from "./Button";
+import useAuthCheck from "../session/useAuthCheck";
+import handleLogout from "../session/handleLogout";
 
 function Admin() {
+  // check session for logged-in users
+  useAuthCheck();
+
+  const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [studentId, setStudentId] = useState("");
   const [verificationResult, setVerificationResult] = useState("");
@@ -50,8 +57,10 @@ function Admin() {
     <MainContainer>
       <Header />
       <ContentContainer>
-        <h2>Upload your certificate to verify authenticity</h2>
-
+        <div className="File-Header">
+          <h2>Upload your certificate to verify authenticity</h2>
+          <Button text="Log out" onClick={() => handleLogout(navigate)} />
+        </div>
         <div className="File-Container">
           <div className="Upload-File-Container">
             <form ref={formRef} onSubmit={handleUpload}>
