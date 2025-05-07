@@ -29,7 +29,7 @@ public class Certificate {
 		this.fileName = fileName;
 		this.issueDate = issueDate;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -68,6 +68,13 @@ public class Certificate {
 
 	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Certificate [id=" + id + ", studentId=" + studentId + ", cidHash=" + cidHash + ", fileName=" + fileName
+				+ ", issueDate=" + issueDate + "]";
 	}
 
 }

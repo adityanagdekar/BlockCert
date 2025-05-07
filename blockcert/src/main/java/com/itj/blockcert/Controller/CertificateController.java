@@ -3,6 +3,7 @@ package com.itj.blockcert.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,15 @@ public class CertificateController {
 		return ResponseEntity.ok(valid ? "Verified" : "Invalid");
 	}
 
-	@GetMapping("/view/{studentId}")
+	@GetMapping("/view/student/{studentId}")
 	// view Certificate
-	public ResponseEntity<Certificate> viewCertificate(@PathVariable String studentId) {
-		return ResponseEntity.ok(certificateService.viewCertificate(studentId));
+	public ResponseEntity<List<Certificate>> viewCertificateByStudentId(@PathVariable String studentId) {
+		System.out.println("Student ID: " + studentId);
+		List<Certificate> certificates = certificateRepository.findByStudentId(studentId);
+		
+		for(Certificate certificate: certificates) {
+			System.out.println(certificate.toString());
+		}
+		return ResponseEntity.ok(certificates);
 	}
 }

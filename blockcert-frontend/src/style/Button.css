@@ -1,0 +1,14 @@
+.Reusable-Button {
+  margin-top: 20px;
+  padding: 10px;
+  /* 8px 16px; */
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Reusable-Button button:hover {
+  background-color: #43a047;
+}

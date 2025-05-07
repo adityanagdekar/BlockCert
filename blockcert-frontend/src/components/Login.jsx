@@ -1,8 +1,11 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
 import "../style/Login.css";
 import axios from "axios";
+import Header from "./Header";
+import MainContainer from "./MainContainer";
+import ContentContainer from "./ContentContainer";
+import Button from "./Button";
 
 const Login = () => {
   const loginFormRef = useRef(null);
@@ -29,13 +32,18 @@ const Login = () => {
         }
       );
 
+      // show the msg from backend
       setMessage(response.data.msg);
       loginFormRef.current.reset();
       setUserName("");
       setPassword("");
 
+      // set the userName/ userId in localStorage
+      localStorage.setItem("userName", userName);
+
+      // get the role
       const role = response.data.role;
-      // Conditional routing
+      // Conditional routing based in role
       if (role === "ADMIN") {
         navigate("/admin");
       } else if (role === "STUDENT") {
@@ -48,10 +56,10 @@ const Login = () => {
   };
 
   return (
-    <div className="Main-Container ">
+    <MainContainer>
       <div className="Login-Container">
         <Header />
-        <div className="Login-Form-Container">
+        <ContentContainer>
           <form
             ref={loginFormRef}
             onSubmit={handleLogin}
@@ -72,12 +80,12 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="submit">Login</button>
+            <Button type="submit" text="Login" />
             <div className="Login-Message">{message}</div>
           </form>
-        </div>
+        </ContentContainer>
       </div>
-    </div>
+    </MainContainer>
   );
 };
 export default Login;
