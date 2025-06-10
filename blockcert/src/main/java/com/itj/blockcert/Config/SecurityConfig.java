@@ -5,25 +5,27 @@ import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import com.itj.blockcert.Repository.UserRepository;
+import org.springframework.security.config.Customizer;
 
 @Configuration
 public class SecurityConfig {
 	
 	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()) // Disable CSRF for REST APIs
+        http
+        .cors(Customizer.withDefaults())
+        .csrf(csrf -> csrf.disable()) // Disable CSRF for REST APIs
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll() // Allow "/auth/**" &  "/certificates/**"
-                .requestMatchers("/certificates/**").permitAll()
+                .requestMatchers("/certificates/upload").permitAll()
+                .requestMatchers("/certificates/view/student/**").permitAll()
+                .requestMatchers("/certificates/download").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login.disable()) // Disable default login form
@@ -41,6 +43,14 @@ public class SecurityConfig {
             .sessionManagement(session -> session
                     .maximumSessions(10) // optional: restrict concurrent logins
                 );
+
+        /*
+        .requestMatchers("/certificates/**").permitAll()
+         * .requestMatchers("/certificates/upload").permitAll()
+         * .requestMatchers("/certificates/verify").permitAll()
+         * .requestMatchers("/certificates/view/student/**").permitAll()
+         * .requestMatchers("/certificates/download/**").permitAll()
+         * */
 
         return http.build();
     }
@@ -64,8 +74,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 	
-	
-//	public UserDetailsService userDetailsService(UserRepository repo) {
-//	    return new CustomUserDetailsService(repo);
-//	}
 }

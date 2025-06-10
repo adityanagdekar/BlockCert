@@ -43,10 +43,12 @@ function Admin() {
           },
         }
       );
-      setVerificationResult(response.data);
-      formRef.current.reset(); // ✅ resets file input too
-      setSelectedFile(null);
-      setStudentId("");
+      if (response.data != null){
+        setVerificationResult("✅ Certificate verified successfully!");
+        formRef.current.reset(); // ✅ resets file input too
+        setSelectedFile(null);
+        setStudentId("");
+      }
     } catch (error) {
       console.error(error);
       setVerificationResult("Upload failed");
@@ -57,6 +59,7 @@ function Admin() {
     <MainContainer>
       <Header />
       <ContentContainer>
+        <h1 className="Dashboard-Title">Welcome to Admin Dashboard.</h1>
         <div className="File-Header">
           <h2>Upload your certificate to verify authenticity</h2>
           <Button text="Log out" onClick={() => handleLogout(navigate)} />

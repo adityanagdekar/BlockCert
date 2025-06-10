@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
 import axios from "axios";
@@ -8,8 +8,9 @@ import ContentContainer from "./ContentContainer";
 import Button from "./Button";
 import useAuthCheck from "../session/useAuthCheck";
 
+import loginImage from "../assets/blockcertlogin.png";
+
 const Login = () => {
-  // check session for logged-in users
   useAuthCheck();
 
   const loginFormRef = useRef(null);
@@ -38,23 +39,17 @@ const Login = () => {
         }
       );
 
-      // show the msg from backend
       setMessage(response.data.msg);
       loginFormRef.current.reset();
       setUserName("");
       setPassword("");
 
-      // set the userName/ userId in localStorage
       localStorage.setItem("userName", userName);
 
-      // get the role
       const role = response.data.role;
-      // Conditional routing based in role
-      if (role === "ADMIN") {
-        navigate("/admin");
-      } else if (role === "STUDENT") {
-        navigate("/student");
-      }
+      if (role === "ADMIN") navigate("/admin");
+      else if (role === "STUDENT") navigate("/student");
+      else if (role === "VERIFIER") navigate("/verifier");
     } catch (error) {
       console.error(error);
       setMessage("Login failed");
@@ -97,55 +92,83 @@ const Login = () => {
   return (
     <MainContainer>
       <div className="Login-Container">
-        <Header />
-        <ContentContainer>
-          <form
-            ref={loginFormRef}
-            onSubmit={isRegisterMode ? handleRegister : handleLogin}
-            className="Login-Form"
-          >
-            <h2>Login</h2>
-            <label>Username</label>
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              required
+        <h1 className="Login-Heading">
+          🎓 BlockCert: Academic Credential Verification
+        </h1>
+
+        <div className="Login-Content-Split">
+          <div className="Login-Left">
+            <img
+              src={loginImage}
+              alt="Student illustration"
+              className="Login-Image"
             />
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {isRegisterMode && (
-              <>
-                <label>Role</label>
-                <select
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  required
-                >
-                  <option value="STUDENT">Student</option>
-                  <option value="ADMIN">Admin</option>
-                </select>
-              </>
-            )}
-            <Button
-              type="submit"
-              text={isRegisterMode ? "Register" : "Login"}
-            />
-            <div className="Login-Message">{message}</div>
-            <Button
-              type="button"
-              onClick={toggleRegisterMode}
-              text={isRegisterMode ? "Back to Login" : "New user? Register"}
-            />
-          </form>
-        </ContentContainer>
+          </div>
+
+          <div className="Login-Right">
+            <form
+              ref={loginFormRef}
+              onSubmit={isRegisterMode ? handleRegister : handleLogin}
+              className="Login-Form"
+            >
+              <div className="Login-Welcome">
+                <div>Hello,</div>
+                <div>Welcome Back</div>
+              </div>
+
+              <label>Username</label>
+              <input
+                type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+              />
+
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              {isRegisterMode && (
+                <>
+                  <label>Role</label>
+                  <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    required
+                  >
+                    <option value="STUDENT">Student</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="VERIFIER">Verifier</option>
+                  </select>
+                </>
+              )}
+
+              <div className="Login-ButtonGroup">
+                <Button
+                  type="submit"
+                  text={isRegisterMode ? "Register" : "Login"}
+                />
+
+                <div className="Login-Or">or</div>
+
+                <Button
+                  type="button"
+                  onClick={toggleRegisterMode}
+                  text={isRegisterMode ? "Back to Login" : "New user? Register"}
+                />
+              </div>
+
+              <div className="Login-Message">{message}</div>
+            </form>
+          </div>
+        </div>
       </div>
     </MainContainer>
   );
 };
+
 export default Login;
