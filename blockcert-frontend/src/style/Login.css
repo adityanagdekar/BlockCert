@@ -1,62 +1,146 @@
 .Login-Container {
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
 }
 
-/* .Login-Form-Container {
+.Login-Heading {
+  font-size: 3.1rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 3rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
-  background-color: #fdfdfd;
-  padding: 5%;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-} */
+  gap: 0.5rem;
+}
+
+.Login-Content-Split {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  position: relative;
+}
+
+.Login-Left {
+  flex: 1.4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1.5rem;
+}
+
+.Login-Image {
+  max-width: 100%;
+  height: auto;
+  transform: scale(1.2);
+}
+
+.Login-Right {
+  flex: 1;
+  background: #fefefe;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+}
 
 .Login-Form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
-.Login-Form h2 {
-  margin-bottom: 15%;
-  text-align: center;
+.Login-Welcome {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  line-height: 1.3;
 }
 
 .Login-Form label {
-  margin-top: 5%;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 1rem;
 }
 
-.Login-Form input {
-  padding: 10px;
-  margin-top: 5px;
+.Login-Form input,
+.Login-Form select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.4rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 0.95rem;
+  box-sizing: border-box;
 }
 
-/* .Login-Form button {
-  margin-top: 20px;
-  padding: 10px;
+.Login-ButtonGroup {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* reduced gap for cleaner spacing */
+}
+
+.Login-Form button {
   background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
 .Login-Form button:hover {
-  background-color: #43a047;
-} */
+  background-color: #388e3c;
+}
+
+.Login-Or {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0; /* remove extra spacing */
+}
 
 .Login-Message {
-  margin-top: 15px;
+  margin-top: 1rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
   color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .Login-Content-Split {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Login-Left {
+    justify-content: center;
+  }
+
+  .Login-Image {
+    width: 85%;
+    transform: scale(1);
+  }
+
+  .Login-Right {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .Login-Form {
+    width: 90%;
+  }
 }
