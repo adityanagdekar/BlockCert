@@ -47,7 +47,7 @@ Traditional certificate systems face major challenges:
 
 
 ## 🏗️ System Architecture
-
+![System Architecture](./assets/blockcert-system-arch.png)
 
 **Other Components:**
 - PostgreSQL → User & certificate metadata.
